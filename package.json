@@ -4,15 +4,26 @@
   "description": "A Band promotional website",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "node server.js",
+    "heroku-postbuild": "npm run client-install && npm run client-build",
+    "client-install": "cd client && npm install",
+    "client-build": "cd client && npm run build",
+    "server-dev": "cross-env NODE_ENV=prod nodemon server.js",
+    "client-dev": "cd client && npm start",
+    "start-dev": "concurrently \"npm run server-dev\" \"npm run client-dev\""
   },
   "author": "Suresh Mangs",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "concurrently": "^5.2.0",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.2",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "morgan": "^1.10.0",
     "nodemon": "^2.0.3",
-    "stripe": "^8.51.0"
+    "stripe": "^8.51.0",
+    "uuidv4": "^6.0.8"
   }
 }
